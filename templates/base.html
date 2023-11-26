@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'home/css/base.css' %}"> -->
+    <title>{{page}}</title>
+<style>
+    :root {
+        --secondaryColor: antiquewhite;
+        --tertiaryColor: rgb(56, 18, 0);
+        --primaryFont: "verdana", "sans"
+
+    }
+
+    * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+
+    }
+    body{
+        width: 100vw;
+        min-height: 100vh;
+        background-color: antiquewhite;
+    }
+    header {
+        height: 12vh;
+    }
+
+    nav {
+        padding: 20px 50px;
+        height: auto;
+        background-color: antiquewhite;
+        display: flex;
+        justify-content: space-between;
+        font-family: var(--primaryFont);
+        color: var(--tertiaryColor);
+    }
+
+    .left {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .right ul {
+        display: flex;
+        justify-content: space-around;
+        gap: 50px;
+    }
+
+    .right ul li {
+        list-style-type: none;
+        background-color: var(--tertiaryColor);
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .right ul li a {
+        color: var(--secondaryColor);
+        text-decoration: none;
+
+    }
+
+    main {
+        min-height: calc(100vh - 22vh );
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(41, 15, 0);
+    }
+
+    footer {
+        height: 10vh;
+        background-color: var(--secondaryColor);
+        width: 100%;
+    }
+</style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="left">
+                <h1 class="page">
+                    {{page}}
+                </h1>
+            </div>
+            <div class="right">
+                {% if user.is_authenticated %}
+                        <ul>
+                            <li><a href="">Hello {{user.username}}</a></li>
+                            <li><a href="/logOut/">Logout</a></li>
+                        </ul>
+                {% else %}
+                    {% if page == "Home" %}
+                    <ul>
+                        <li><a href="/login/">Log In</a></li>
+                        <li><a href="/register/">Register</a></li>
+                    </ul>
+                    {% elif page == "Login" %}
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/register/">Register</a></li>
+                        </ul>
+                    {% elif page == "Register" %}
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/login/">Log In</a></li>
+                        </ul>
+                    {% endif %}
+                {% endif %}
+
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        {% block main %}
+        {% endblock %}
+    </main>
+
+    <footer>
+    </footer>
+</body>
+
+</html>

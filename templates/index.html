@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    {% if user.is_authenticated %}
+
+    <style>
+        .container1{
+            width: 100%;
+            height: calc(100vh - 22vh);
+            display: flex;
+            background-color: var(--secondaryColor);
+            justify-content: space-between;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+
+        }
+        .sidebar{
+            width: 15%;
+            height: calc(100vh - 11.9vh);
+            padding: 5px;
+            padding-top: 15px;
+            color: white;
+            border-radius: 2px;
+            background-color: #331504d0;
+        }
+        .sidebar ul li{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            column-gap: 4px;
+            list-style-type: none;
+            padding: 5px 15px;
+        }
+        .sidebar ul li:hover{
+            background-color: #3f1902;
+        }
+        .sidebar ul{
+            margin-bottom: 20px;
+
+        }
+        .sidebar ul li:not(:first-child){
+            font-size: 0.8rem;
+            margin: 3px 0px;
+            font-weight: 100;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+        }
+        .icon{
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: 20px;
+            height: 20px;
+            background-color: #3f190260;
+            border-radius: 3px;
+        }
+        .icon h1{
+            font-size: 0.9rem;
+        }
+    </style>
+
+    <div class="container1">
+        <div class="sidebar">
+            <ul>
+                <li>
+                    <div class="icon"><h1>{{user.username|first|upper}}</h1></div>
+                    <h5>{{user.username.capitalize}}'s Notion</h5>
+                </li>
+                <li>
+                    <div class="icon"><h1>S</h1></div>
+                    <h5>Search</h5>
+                </li>
+                <li>
+                    <div class="icon"><h1>U</h1></div>
+                    <h5>Updates</h5>
+                </li>
+                <li>
+                    <div class="icon"><h1>S</h1></div>
+                    <h5>Settings & members</h5>
+                </li>
+                <li>
+                    <div class="icon"><h1>N</h1></div>
+                    <h5>New Page</h5>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <div class="icon"><h1>G</h1></div>
+                    <h5>Getting Started</h5>
+                </li>
+                <li>
+                    <div class="icon"><h1>Q</h1></div>
+                    <h5>Quick Note</h5>
+                </li>
+                <li>
+                    <div class="icon"><h1>P</h1></div>
+                    <h5>Personal Home</h5>
+                </li>
+                <li>
+                    <div class="icon"><h1>T</h1></div>
+                    <h5>Take List</h5>
+                </li>
+                <li>
+                    <div class="icon"><h1>+</h1></div>
+                    <h5>Add Page</h5>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <div class="icon"><h1>C</h1></div>
+                    <h5>Create a Teamspace</h5>
+                </li>
+                <li>
+                    <div class="icon"><h1>T</h1></div>
+                    <h5>Templates</h5>
+                </li>
+                <li>
+                    <div class="icon"><h1>I</h1></div>
+                    <h5>Import</h5>
+                </li>
+                <li>
+                    <div class="icon"><h1>T</h1></div>
+                    <h5>Trash</h5>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content">
+            
+        </div>
+    </div>
+
+    {% else %}
+        <style>
+            .container1{
+                width: 50%;
+                color: #fff;
+                text-align: center;
+                align-self: flex-start;
+                margin-top: 50px;
+            }
+            .welcome h4{
+                margin-bottom: 30px;
+            }
+            .hero{
+                margin-top: 50px;
+            }
+            .hero h1{
+                font-size: 3rem;
+            }
+        </style>
+        <div class="container1">
+            <div class="welcome">
+                <h1>Welcome to YourNote</h1>
+                <h4>Place which helps you remember</h4>
+
+                <h3>Write, plan, share.</h3>
+                <h3>With AI at your side</h3>
+                </div>
+                <div class="hero">
+                    <h1>Log In to get Started</h1>
+                </div>
+        </div>
+        
+    {% endif %}
+{% endblock %}
